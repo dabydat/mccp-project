@@ -93,6 +93,12 @@ docker-compose exec app npm run build
 ---
 
 ## Evidencias de Funcionamiento
-*   **Logs Técnicos:** Se consulta `storage/logs/laravel.log` para verificar la generación del **XML para SMS Legacy (SOAP)** y el payload del **Email**.
+*   **Logs Técnicos:** Se consulta `storage/logs/laravel.log` para verificar la generación del **XML para SMS Legacy (SOAP)** y el payload del **Email** y del **Slack**.
 *   **Slack Webhook:** Se debe configurar una URL de Webhook.site(https://webhook.site), para valdiar el canal de slack y ver las notificaciones en tiempo real.
 *   **Dashboard:** Para visualziar el dashboard se debe acceder a `http://localhost:8000/dashboard` donde esta el historial completo de los mensajes enviados a traves d elos canales, los resúmenes generados por la IA y el estatus individual de cada intento de envío.
+
+<img width="671" height="264" alt="Screenshot_1" src="https://github.com/user-attachments/assets/9286cef2-57d9-4f96-bf75-700074574d3f" />
+<img width="867" height="175" alt="Screenshot_2" src="https://github.com/user-attachments/assets/c2128562-e903-4906-b639-933ea085561f" />
+<img width="1067" height="381" alt="Screenshot_3" src="https://github.com/user-attachments/assets/8c26a30f-af2c-49a7-877c-aff9c1a727a7" />
+
+  
