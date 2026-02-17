@@ -1,0 +1,54 @@
+services:
+  # PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    container_name: mccp_app
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:80"
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www/html
+    volumes:
+      - mccp_storage:/var/www/html/storage
+      - mccp_cache:/var/www/html/bootstrap/cache
+      - ./:/var/www/html
+      - /var/www/html/node_modules
+      - /var/www/html/vendor
+    depends_on:
+      - db
+    networks:
+      - mccp_network
+
+  # PostgreSQL Service
+  db:
+    image: postgres:13-alpine
+    container_name: mccp_db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mccp_db
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+    volumes:
+      - mccp_db_data:/var/lib/postgresql/data
+    networks:
+      - mccp_network
+
+networks:
+  mccp_network:
+    driver: bridge
+
+volumes:
+  mccp_db_data:
+    driver: local
+  mccp_storage:
+    driver: local
+  mccp_cache:
+    driver: local
